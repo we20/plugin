@@ -216,7 +216,7 @@ end
 -- Returns at table of lua files inside plugins
 function plugins_names( )
   local files = {}
-  for k, v in pairs(scandir("plugins")) do
+  for k, v in pairs(scandir("Plugins")) do
     -- Ends with .lua
     if (v:match(".lua$")) then
       table.insert(files, v)
