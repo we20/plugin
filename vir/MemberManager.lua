@@ -176,7 +176,7 @@ local function run(msg, matches)
     local user_id = matches[3]
     local chat_id = msg.to.id
     if msg.to.type == 'chat' then
-      if matches[2] == '' then
+      if matches[2] == '+' then
         if string.match(matches[3], '^%d+$') then
             ban_user(user_id, chat_id)
             send_large_msg(receiver, 'User '..user_id..' BANNED!')
@@ -185,7 +185,7 @@ local function run(msg, matches)
             chat_info(receiver, username_id, {get_cmd=get_cmd, receiver=receiver, chat_id=chat_id, member=member})
         end
       end
-      if matches[2] == 'del' then
+      if matches[2] == '-' then
         local hash =  'banned:'..chat_id..':'..user_id
         redis:del(hash)
         return 'User '..user_id..' UNbanned'
@@ -198,7 +198,7 @@ local function run(msg, matches)
   if matches[1] == 'globalban' and is_admin(msg) then
     local user_id = matches[3]
     local chat_id = msg.to.id
-    if matches[2] == '' then
+    if matches[2] == '+' then
         if string.match(matches[3], '^%d+$') then
             superban_user(user_id, chat_id)
             send_large_msg(receiver, 'User '..user_id..' GLOBALLY BANNED!')
@@ -207,7 +207,7 @@ local function run(msg, matches)
             chat_info(receiver, username_id, {get_cmd=get_cmd, receiver=receiver, chat_id=chat_id, member=member})
         end
     end
-    if matches[2] == 'del' then
+    if matches[2] == '-' then
         local hash =  'superbanned:'..user_id
         redis:del(hash)
         return 'User '..user_id..' GLOBALLY UNbanned'
@@ -290,14 +290,14 @@ return {
       moderator = {
           "/kick (@user) : kick user",
           "/kick (id) : kick user",
-          "/ban (@user) : kick user for ever",
-          "/ban (id) : kick user for ever",
-          "/ban del (id) : unban user",
+          "/ban + (@user) : kick user for ever",
+          "/ban + (id) : kick user for ever",
+          "/ban - (id) : unban user"
           },
       admin = {
-          "/globalban (@user) : ban user from all groups",
-          "/globalban (id) : ban user from all groups",
-          "/globalban del (id) : globally unban user",
+          "/globalban + (@user) : ban user from all groups",
+          "/globalban + (id) : ban user from all groups",
+          "/globalban - (id) : globally unban user"
           },
       },
   patterns = {
@@ -307,10 +307,10 @@ return {
     "^[!/](wlist) (chat)$",
     "^[!/](wlist) (delete) (user) (.*)$",
     "^[!/](wlist) (delete) (chat)$",
-    "^[!/](ban) () (.*)$",
-    "^[!/](ban) (del) (.*)$",
-    "^[!/](globalban) () (.*)$",
-    "^[!/](globalban) (del) (.*)$",
+    "^[!/](ban) (+) (.*)$",
+    "^[!/](ban) (-) (.*)$",
+    "^[!/](globalban) (+) (.*)$",
+    "^[!/](globalban) (-) (.*)$",
     "^[!/](kick) (.*)$",
     "^[!/](kickme)$",
     "^!!tgservice (.+)$",
