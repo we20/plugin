@@ -16,5 +16,6 @@ return {
   patterns = {
     "^[!/]echo +(.+)$"
   }, 
-  run = run 
+	run = run,
+	moderated = true
 }
