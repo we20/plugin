@@ -100,7 +100,7 @@ local function promote(receiver, member_username, member_id)
     return send_large_msg(receiver, 'Moderator list added')
   end
   if data[group]['moderators'][tostring(member_id)] then
-    return send_large_msg(receiver, member_username..' is already moderator')
+    return send_large_msg(receiver, '@'..member_username..' is already moderator')
     end
     data[group]['moderators'][tostring(member_id)] = member_username
     save_data(_config.moderation.data, data)
@@ -114,7 +114,7 @@ local function demote(receiver, member_username, member_id)
     return send_large_msg(receiver, 'Group have not moderator list')
   end
   if not data[group]['moderators'][tostring(member_id)] then
-    return send_large_msg(receiver, member_username..' is not moderator')
+    return send_large_msg(receiver, '@'..member_username..' is not moderator')
   end
   data[group]['moderators'][tostring(member_id)] = nil
   save_data(_config.moderation.data, data)
@@ -129,7 +129,7 @@ local function admin_promote(receiver, member_username, member_id)
   end
 
   if data['admins'][tostring(member_id)] then
-    return send_large_msg(receiver, member_username..' is already GLOBAL ADMIN')
+    return send_large_msg(receiver, '@'..member_username..' is already GLOBAL ADMIN')
   end
   
   data['admins'][tostring(member_id)] = member_username
@@ -145,13 +145,13 @@ local function admin_demote(receiver, member_username, member_id)
   end
 
   if not data['admins'][tostring(member_id)] then
-    return send_large_msg(receiver, member_username..' is not GLOBAL ADMIN')
+    return send_large_msg(receiver, '@'..member_username..' is not GLOBAL ADMIN')
   end
 
   data['admins'][tostring(member_id)] = nil
   save_data(_config.moderation.data, data)
 
-  return send_large_msg(receiver, ''..member_username..' remove from GLOBAL ADMIN list')
+  return send_large_msg(receiver, '@'..member_username..' remove from GLOBAL ADMIN list')
 end
 
 local function username_id(cb_extra, success, result)
