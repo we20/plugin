@@ -11,8 +11,7 @@ local function mathjs(exp)
   elseif c == 400 then
     text = b
   else
-    text = 'Unexpected error\n'
-      ..'Is api.mathjs.org up?'
+    text = 'Error!'
   end
   return text
 end
@@ -23,7 +22,7 @@ end
 
 return {
   description = "Calculate Your Formulas",
-  usage = "/calc (formulas) : ex.formulas 3+7*2/5",
+  usage = "/calc (formulas) : ex.formulas (3+7)*(2^3)/5",
   patterns = {
     "^[!/]calc (.*)$"
   },
