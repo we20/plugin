@@ -89,7 +89,7 @@ local function plugin_help(name,number,requester)
       end
       text = text..'______________________________\n'
     elseif has_usage_data(plugin) then -- Is not empty
-      text = text..plugin.usage..'\______________________________\n'
+      text = text..plugin.usage..'\n______________________________\n'
     end
     return text
 end
@@ -97,23 +97,19 @@ end
  
 -- !help command
 local function telegram_help()
-  local i = 0
-  local text = "Umbrella Bot Commands Name List:\n______________________________\n\n"
+  local text = "Umbrella Tools List:\n______________________________\n"
   -- Plugins names
   for name in pairsByKeys(plugins) do
     if plugins[name].hidden then
       name = nil
     else
-    i = i + 1
-    text = text..i..'> '..name..'\n'
+    text = text..'> '..name..'\n'
     end
   end
   text = text..'______________________________'
-  text = text..'\n'..'For see all commands info, send /helps'
-  text = text..'\n'..'For see a acommand info, send /help (num,name)'
-  text = text..'\n'..'For Umbrella Bot info, send /ver'
-  text = text..'\n'..'You can use "!" instead "/"'
-  text = text..'\n'..'http://Umbrella.shayan-soft.IR | @shayansoft'
+  text = text..'\n'..'You can use < /helps > for view all items info or can use < /help (name) > for view a item info'
+  text = text..'\n'..'For see about Umbrella Bot Team, send < /ver >'
+  text = text..'\n'..'Sudo: @shayansoft Channel: @UmbrellaTeam'
   return text
 end
  
@@ -141,9 +137,9 @@ local function run(msg, matches)
   else
       requester = "user"
   end
-  if matches[1] == "/help" then
+  if matches[1] == "[!/]help" then
     return telegram_help()
-  elseif matches[1] == "/helps" then
+  elseif matches[1] == "[!/]helps" then
     return help_all(requester)
   else
     local text = ""
@@ -160,12 +156,11 @@ local function run(msg, matches)
 end
  
 return {
-  description = "Umbrella Bot Commands Info",
+  description = "Help For Command and Tools",
   usage = {
-    "/help : commands list",
-    "/helps : all commands info",
-    "/help (name) : command info",
-    "/help (num) : command info"
+    "/help : view items list",
+    "/helps : view all commands and info",
+    "/help (name) : view a item commands and info",
   },
   patterns = {
     "^[!/]help$",
