@@ -166,7 +166,7 @@ local function show_group_settings(msg, data)
         return "You are NOT moderator"
     end
     local settings = data[tostring(msg.to.id)]['settings']
-    local text = "Group Settings:\n_________________________\n> Lock Group Name : "..settings.lock_name.."\n> Lock Group Photo : "..settings.lock_photo.."\n> Lock Group Member : "..settings.lock_member.."\n> Anti Spam System : On\n> Anti Spam Mod : Kick\n> Anti Spam Action : 10\nGroup Status : Active\nGroup Model : Free-VIP\nSupportion : Yes"
+    local text = "Group Settings:\n_________________________\n> Lock Group Name : "..settings.lock_name.."\n> Lock Group Photo : "..settings.lock_photo.."\n> Lock Group Member : "..settings.lock_member.."\n> Anti Spam System : on\n> Anti Spam Mod : kick\n> Anti Spam Action : 10\n> Group Status : active\n> Group Model : free\n> Group Mod : 2\n> Supportion : yes\n> Bot Version : 1.6"
     return text
 end
 
