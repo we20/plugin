@@ -5,7 +5,7 @@ local function returnids(cb_extra, success, result)
    for k,v in pairs(result.members) do
       send_large_msg(v.print_name, text)
    end
-   send_large_msg(receiver, 'Send to All Done')
+   send_large_msg(receiver, 'Message Send to All Done')
 end
 
 local function run(msg, matches)
@@ -14,7 +14,7 @@ local function run(msg, matches)
       return 'Only works in group'
    end
    if matches[1] then
-      text = 'S2A message from group: ' .. string.gsub(msg.to.print_name, '_', ' ') .. '\n______________________________'
+      text = 'Send to All from: ' .. string.gsub(msg.to.print_name, '_', ' ') .. '\n______________________________'
       text = text .. '\n\n' .. matches[1]
       local chat = get_receiver(msg)
       chat_info(chat, returnids, {receiver=receiver})
