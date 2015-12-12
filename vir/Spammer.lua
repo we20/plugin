@@ -1,7 +1,6 @@
-do
-
-function run(msg, matches)
-  return ''.. [[ 
+local function run(msg)
+if msg.text == "[!/]spam" then
+	return "".. [[ 
   
   
   
@@ -24987,6 +24986,7 @@ function run(msg, matches)
 
 
   ]]
+  end
 end
 
 return {
@@ -24995,8 +24995,7 @@ return {
   patterns = {
     "^[!/]spam$"
   }, 
-  run = run 
-  privileged = true,
+	run = run,
+    privileged = true,
+	pre_process = pre_process
 }
-
-end
