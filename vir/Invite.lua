@@ -19,14 +19,14 @@ local function run(msg, matches)
   
   -- User submitted an id
   if matches[1] == "id" then
-    user = 'User added by ID : '..user
+    user = 'User by ID Number '..user
   end
 
   -- The message must come from a chat group
   if msg.to.type == 'chat' then
     local chat = ''
     chat_add_user(chat, user, callback, false)
-    return '@'..user.." added"
+    return user.." added"
   else 
     return 'Only work in group'
   end
