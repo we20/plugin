@@ -55,7 +55,7 @@ local function chat_stats(chat_id)
 
   local text = ''
   for k,user in pairs(users_info) do
-    text = '> '..text..user.name..' PMs: '..user.msgs..'\n'
+    text = text..'> '..user.name..' PMs:'..user.msgs..'\n'
   end
 
   return text
@@ -125,7 +125,7 @@ local function bot_stats()
   -- Users
   local hash = 'msgs:*:'..our_id
   local r = redis:eval(redis_scan, 1, hash)
-  local text = 'Umbrella Bot Stats:\n_________________________\nUsers: '..r
+  local text = 'Users: '..r
 
   hash = 'chat:*:users'
   r = redis:eval(redis_scan, 1, hash)
@@ -157,7 +157,7 @@ local function run(msg, matches)
 
     if matches[2] == "gp" then
       if not is_sudo(msg) then
-        return "You are NOT GLOBAL ADMIN"
+        return "You are NOT GLOBAL ADMIN!"
       else
         return chat_stats(matches[3])
       end
@@ -166,16 +166,16 @@ local function run(msg, matches)
 end
 
 return {
-  description = "Plugin to update user stats.", 
+  description = "Robot, Groups and Member Stats", 
   usage = {
-    "/stats : view pm contor for all member",
-    "/stats gp (id) : view pm contor for group",
-    "/stats bot : view robot stats"
+    "/stats : number of messages stats",
+    "/stats gp (id) : other group stats",
+    "/stats bot : robot stats"
   },
   patterns = {
-    "^[!/]([Ss]tats)$",
-    "^[!/]([Ss]tats) (gp) (%d+)",
-    "^[!/]([Ss]tats) (bot)"
+    "^[!/](stats)$",
+    "^[!/](stats) (gp) (%d+)",
+    "^[!/](stats) (bot)"
     }, 
   run = run,
   pre_process = pre_process
