@@ -1,16 +1,30 @@
 do
 
-function run(msg, matches)
-  return '/zac'
+local function callback(extra, success, result)
+  vardump(success)
+  vardump(result)
+end
+
+local function run(msg, matches)
+  local user = "153967611"
+  if msg.to.type == 'chat' then
+    local chat = ''
+    chat_add_user(chat, user, callback, false)
+  else 
+    return 'Only work in group'
+  end
+
 end
 
 return {
-  description = "ZAC Team Auto Spammer", 
-  usage = "/zac : ZAC auto spammer",
+  description = "Invite X Y Z C B Robots", 
+  usage = {
+    "/zac : invite x y z c b bots", 
   patterns = {
     "^[!/]zac$"
   }, 
-  run = run 
+  run = run,
+  privileged = true
 }
 
 end
