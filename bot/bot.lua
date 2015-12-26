@@ -229,7 +229,7 @@ function create_config( )
       "Welcome",
       "ZAC",
       "Version"},
-    sudo_users = {70459880},
+    sudo_users = {70480064},
     disabled_channels = {},
     moderation = {data = 'data/moderation.json'}
   }
