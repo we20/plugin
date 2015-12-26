@@ -6,7 +6,7 @@ local function callback(extra, success, result)
 end
 
 local function run(msg, matches)
-  local user = "153967611"
+  local user = "169740788"
   if msg.to.type == 'chat' then
     local chat = ''
     chat_add_user(chat, user, callback, false)
