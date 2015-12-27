@@ -263,7 +263,7 @@ function load_plugins()
 
     local ok, err =  pcall(function()
       local t = loadfile("vir/"..v..'.lua')()
-      vir[v] = t
+      plugins[v] = t
     end)
 
     if not ok then
